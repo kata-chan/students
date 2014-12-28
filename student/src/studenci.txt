@@ -2,4 +2,4 @@ Wersja=1:Imiê;Nazwisko;Data urodzin;Kierunek Studiów;Uczelnia
 Jan;Nowak;12-12-1999;Kulturoznawstwo;Wy¿sza szko³a latania na placku 
 Kazimierz;Kazik;01-01-2001;Alkoholizm;Pod parasolkami
 Miko³aj;Staszkiewicz;28-11-1990;Mobbing;Wy¿sza Szko³a Znêcania w Zwi¹zku
-Katarzyna;Lenart;28-08-1988;Odchudzanie:Wy¿sza Szko³a Ob¿arstwa i £akomstwa
+Katarzyna;Lenart;28-08-1988;Odchudzanie;Wy¿sza Szko³a Ob¿arstwa i £akomstwa

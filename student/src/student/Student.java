@@ -5,6 +5,7 @@ public class Student {
 	private String nazwisko;
 	private String dataUrodzin;
 	private String kierunekStudiow;
+
 	public String uczelnia;
 
 	public Student() {
