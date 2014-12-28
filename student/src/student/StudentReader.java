@@ -6,14 +6,11 @@ import java.util.Scanner;
 
 public class StudentReader {
 	public static void main(String[] args) throws FileNotFoundException {
-		StudentReader nowyObiekt = new StudentReader();
-		Student[] tablicaStudentow = nowyObiekt.odczytajStudentow("src/studenci.txt");
+		StudentReader odczyt = new StudentReader();
+		Student[] tablicaStudentow = odczyt.odczytajStudentow("src/studenci.txt");
 
-		for (Student student : tablicaStudentow) {
-			if (student != null) {
-				System.out.println(student);
-			}
-		}
+		StudentWriter zapis = new StudentWriter();
+		zapis.zapiszStudentow(tablicaStudentow, "src/studenci-zapis.txt");
 	}
 
 	public Student[] odczytajStudentow(String nazwaPliku) throws FileNotFoundException {
