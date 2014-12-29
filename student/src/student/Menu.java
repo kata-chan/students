@@ -17,6 +17,7 @@ public class Menu {
 
 			System.out.println("podaj  liczbe:");
 			int obiad = menu.nextInt();
+
 			switch (obiad) {
 			case 1:
 				System.out.println("Podaj nazwê pliku");
@@ -35,6 +36,34 @@ public class Menu {
 				zapis.zapiszStudentow(tablicaStudentow, nazwaPliku);
 				break;
 			case 3:
+				System.out.println("Podaj imiê");
+				String imie = menu.next();
+				System.out.println("Podaj nazwisko");
+				String nazwisko = menu.next();
+				System.out.println("Podaj datê urodzenia");
+				String data = menu.next();
+				System.out.println("podaj kierunek studiów");
+				String kierunek = menu.next();
+				System.out.println("podaj uczelnie");
+				String uczelnia = menu.next();
+
+				Student nowyStudent = new Student();
+
+				nowyStudent.setImie(imie);
+				nowyStudent.setNazwisko(nazwisko);
+				nowyStudent.setDataUrodzin(data);
+				nowyStudent.setKierunekStudiow(kierunek);
+				nowyStudent.uczelnia = uczelnia;
+				int liczbaZajetych = 0;
+				for (Student student : tablicaStudentow) {
+					if (student == null) {
+						tablicaStudentow[liczbaZajetych] = nowyStudent;
+						break;
+					}
+					if (student != null) {
+						liczbaZajetych++;
+					}
+				}
 
 				break;
 			case 4:
