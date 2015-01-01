@@ -13,8 +13,8 @@ public class Menu {
 			System.out.println("3.Dodaj studenta");
 			System.out.println("4.Usuñ studenta");
 			System.out.println("5.Wypisz liste na ekran");
+			System.out.println("6.Szukaj Studenta");
 			System.out.println("9.Wyjœcie");
-
 			System.out.println("podaj  liczbe:");
 			int obiad = menu.nextInt();
 
@@ -67,13 +67,50 @@ public class Menu {
 
 				break;
 			case 4:
-				System.out.println("Funkcja jeszcze niedostêpna");
+				int indeks = 1;
+				for (Student student : tablicaStudentow) {
+					if (student != null) {
 
+						System.out.println(indeks + ". " + student.getImie() + " " + student.getNazwisko() + " "
+								+ student.getDataUrodzin() + " " + student.getKierunekStudiow() + " "
+								+ student.uczelnia);
+						indeks++;
+					}
+
+				}
+
+				System.out.println("Podaj numer studenta do usuniêcia");
+				indeks = menu.nextInt();
+
+				for (int i = indeks; i < tablicaStudentow.length; i++) {
+					tablicaStudentow[i - 1] = tablicaStudentow[i];
+
+				}
+				tablicaStudentow[tablicaStudentow.length - 1] = null;
 				break;
+
 			case 5:
 				for (Student student : tablicaStudentow) {
 					if (student != null) {
+
 						System.out.println(student.getImie() + " " + student.getNazwisko());
+
+					}
+				}
+				break;
+			case 6:
+				System.out.println("Podaj szukan¹ fraze");
+
+				String szukana = menu.next().toLowerCase();
+				for (Student wyszukiwany : tablicaStudentow) {
+					if (wyszukiwany != null) {
+						if (wyszukiwany.getImie().toLowerCase().contains(szukana)
+								|| wyszukiwany.getNazwisko().toLowerCase().contains(szukana)
+								|| wyszukiwany.getKierunekStudiow().toLowerCase().contains(szukana)
+								|| wyszukiwany.uczelnia.toLowerCase().contains(szukana)) {
+							System.out.println(wyszukiwany.getImie() + " " + wyszukiwany.getNazwisko() + " "
+									+ wyszukiwany.getKierunekStudiow() + " " + wyszukiwany.uczelnia);
+						}
 					}
 				}
 				break;
