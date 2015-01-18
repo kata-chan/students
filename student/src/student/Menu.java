@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 public class Menu {
 	public static void main(String[] args) throws FileNotFoundException {
-		Scanner menu = new Scanner(System.in);
+		Scanner menu = new Scanner(System.in); // s³u¿y do odczytywania z
+												// klawiatury
 		Student[] tablicaStudentow = null;
 		petla: while (true) {
 			System.out.println("1.Odczyt listy studentów");
