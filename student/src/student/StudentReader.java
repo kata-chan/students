@@ -16,25 +16,26 @@ public class StudentReader {
 	public Student[] odczytajStudentow(String nazwaPliku) throws FileNotFoundException {
 
 		File file = new File(nazwaPliku);
-		Scanner scanner = new Scanner(file);
-		scanner.nextLine();
 		Student[] studenci = new Student[20];
-		int liczbaStudentow = 0;
+		if (file.exists()) {
 
-		while (scanner.hasNextLine()) {
-			String linia = scanner.nextLine();
-			String[] tablica = linia.split(";");
-			Student record = new Student();
-			record.setImie(tablica[0]);
-			record.setNazwisko(tablica[1]);
-			record.setDataUrodzin(tablica[2]);
-			record.setKierunekStudiow(tablica[3]);
-			record.uczelnia = tablica[4];
-			studenci[liczbaStudentow] = record;
-			// System.out.println(record);
-			liczbaStudentow++;
+			Scanner scanner = new Scanner(file);
+			scanner.nextLine();
+			int liczbaStudentow = 0;
+			while (scanner.hasNextLine()) {
+				String linia = scanner.nextLine();
+				String[] tablica = linia.split(";");
+				Student record = new Student();
+				record.setImie(tablica[0]);
+				record.setNazwisko(tablica[1]);
+				record.setDataUrodzin(tablica[2]);
+				record.setKierunekStudiow(tablica[3]);
+				record.uczelnia = tablica[4];
+				studenci[liczbaStudentow] = record;
+				// System.out.println(record);
+				liczbaStudentow++;
+			}
 		}
-
 		return studenci;
 
 	}
