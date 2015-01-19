@@ -53,6 +53,15 @@ public class Menu {
 		menu.close();
 	}
 
+	private boolean czyListaPusta() {
+		for (Student student : tablicaStudentow) {
+			if (student != null) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	private void dodajStudenta()
 
 	{
@@ -85,18 +94,9 @@ public class Menu {
 		}
 	}
 
-	private boolean czyListaPusta(){
-		for (Student student : tablicaStudentow){
-			if (student!=null){
-				return false;
-			}	
-		}
-		return true;
-	}
-	
 	private void edytuj() {
 		int indexStudentEdytowany;
-		if (czyListaPusta()){
+		if (czyListaPusta()) {
 			System.out.println("lista jest pusta");
 			return;
 		}
@@ -105,20 +105,22 @@ public class Menu {
 			System.out.println("Podaj numer studenta do edytowania");
 
 			indexStudentEdytowany = menu.nextInt() - 1;
-			
 
 		} while (indexStudentEdytowany < 0 || indexStudentEdytowany > tablicaStudentow.length - 1
 				|| tablicaStudentow[indexStudentEdytowany] == null);
 
 		Student studentEdytowany = tablicaStudentow[indexStudentEdytowany];
+		int nazwa;
+		do {
+			System.out.println("1.imiê");
+			System.out.println("2.nazwisko");
+			System.out.println("3.data urodzenia");
+			System.out.println("4.kierunek studiów");
+			System.out.println("5.uczelnia");
+			System.out.println("Podaj co chcesz edytowaæ");
+			nazwa = menu.nextInt();
+		} while (nazwa < 1 || nazwa > 5);
 
-		System.out.println("1.imiê");
-		System.out.println("2.nazwisko");
-		System.out.println("3.data urodzenia");
-		System.out.println("4.kierunek studiów");
-		System.out.println("5.uczelnia");
-		System.out.println("Podaj co chcesz edytowaæ");
-		int nazwa = menu.nextInt();
 		System.out.println("podaj now¹ wartoœæ");
 		String nowaWartosc = menu.next();
 		switch (nazwa) {
@@ -169,11 +171,24 @@ public class Menu {
 	}
 
 	private void usunStudenta() {
-		wypiszListeNaEkran();
-		System.out.println("Podaj numer studenta do usuniêcia");
-		int indeks = menu.nextInt();
+		// wypiszListeNaEkran();
+		// System.out.println("Podaj numer studenta do usuniêcia");
+		// int indeks = menu.nextInt();
+		int indexStudentEdytowany;
+		if (czyListaPusta()) {
+			System.out.println("lista jest pusta");
+			return;
+		}
+		do {
+			wypiszListeNaEkran();
+			System.out.println("Podaj numer studenta do usuniecia");
 
-		for (int i = indeks; i < tablicaStudentow.length; i++) {
+			indexStudentEdytowany = menu.nextInt();
+
+		} while (indexStudentEdytowany < 1 || indexStudentEdytowany > tablicaStudentow.length
+				|| tablicaStudentow[indexStudentEdytowany - 1] == null);
+
+		for (int i = indexStudentEdytowany; i < tablicaStudentow.length; i++) {
 			tablicaStudentow[i - 1] = tablicaStudentow[i];
 
 		}
