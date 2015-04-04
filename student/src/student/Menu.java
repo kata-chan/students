@@ -1,6 +1,7 @@
 package student;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
@@ -10,9 +11,9 @@ public class Menu {
 		menu.glownaPetla();
 	}
 
-	private final Scanner menu = new Scanner(System.in); // s³u¿y do odczytywania z klawiatury
+	private final Scanner menu = new Scanner(System.in); // sÅ‚uÅ¼y do odczytywania z klawiatury
 
-	private Student[] tablicaStudentow = new Student[20];
+	private ArrayList<Student> tablicaStudentow = new ArrayList<Student>();
 
 	public void glownaPetla() throws FileNotFoundException {
 		petla: while (true) {
@@ -65,15 +66,15 @@ public class Menu {
 	private void dodajStudenta()
 
 	{
-		System.out.println("Podaj imiê");
+		System.out.println("Podaj imiÄ™");
 		String imie = menu.next();
 		System.out.println("Podaj nazwisko");
 		String nazwisko = menu.next();
-		System.out.println("Podaj datê urodzenia");
+		System.out.println("Podaj datÄ™ urodzenia");
 		String data = menu.next();
-		System.out.println("podaj kierunek studiów");
+		System.out.println("podaj kierunek studiÃ³w");
 		String kierunek = menu.next();
-		System.out.println("podaj uczelnie");
+		System.out.println("podaj uczelniÄ™");
 		String uczelnia = menu.next();
 
 		Student nowyStudent = new Student();
@@ -83,15 +84,8 @@ public class Menu {
 		nowyStudent.setDataUrodzin(data);
 		nowyStudent.setKierunekStudiow(kierunek);
 		nowyStudent.uczelnia = uczelnia;
-		int liczbaZajetych = 0;
-		for (Student student : tablicaStudentow) {
-			if (student == null) {
-				tablicaStudentow[liczbaZajetych] = nowyStudent;
-			}
-			if (student != null) {
-				liczbaZajetych++;
-			}
-		}
+		tablicaStudentow.add(nowyStudent);
+
 	}
 
 	private void edytuj() {
@@ -106,22 +100,21 @@ public class Menu {
 
 			indexStudentEdytowany = menu.nextInt() - 1;
 
-		} while (indexStudentEdytowany < 0 || indexStudentEdytowany > tablicaStudentow.length - 1
-				|| tablicaStudentow[indexStudentEdytowany] == null);
+		} while (indexStudentEdytowany < 0 || indexStudentEdytowany > tablicaStudentow.size() - 1);
 
-		Student studentEdytowany = tablicaStudentow[indexStudentEdytowany];
+		Student studentEdytowany = tablicaStudentow.get(indexStudentEdytowany);
 		int nazwa;
 		do {
-			System.out.println("1.imiê");
+			System.out.println("1.imiÄ™");
 			System.out.println("2.nazwisko");
 			System.out.println("3.data urodzenia");
-			System.out.println("4.kierunek studiów");
+			System.out.println("4.kierunek studiÃ³w");
 			System.out.println("5.uczelnia");
-			System.out.println("Podaj co chcesz edytowaæ");
+			System.out.println("Podaj co chcesz edytowaÄ‡");
 			nazwa = menu.nextInt();
 		} while (nazwa < 1 || nazwa > 5);
 
-		System.out.println("podaj now¹ wartoœæ");
+		System.out.println("podaj nowÄ… wartoÅ›Ä‡");
 		String nowaWartosc = menu.next();
 		switch (nazwa) {
 		case 1:
@@ -146,7 +139,7 @@ public class Menu {
 	private void odczytListyStudentow() throws FileNotFoundException
 
 	{
-		System.out.println("Podaj nazwê pliku");
+		System.out.println("Podaj nazwÄ™ pliku");
 		String nazwaPliku = menu.next();
 
 		StudentReader odczyt = new StudentReader();
@@ -154,7 +147,7 @@ public class Menu {
 	}
 
 	private void szukajStudenta() {
-		System.out.println("Podaj szukan¹ fraze");
+		System.out.println("Podaj szukanï¿½ fraze");
 
 		String szukana = menu.next().toLowerCase();
 		for (Student wyszukiwany : tablicaStudentow) {
@@ -172,9 +165,9 @@ public class Menu {
 
 	private void usunStudenta() {
 		// wypiszListeNaEkran();
-		// System.out.println("Podaj numer studenta do usuniêcia");
+		// System.out.println("Podaj numer studenta do usuniï¿½cia");
 		// int indeks = menu.nextInt();
-		int indexStudentEdytowany;
+		int indexStudentUsuwany;
 		if (czyListaPusta()) {
 			System.out.println("lista jest pusta");
 			return;
@@ -183,16 +176,11 @@ public class Menu {
 			wypiszListeNaEkran();
 			System.out.println("Podaj numer studenta do usuniecia");
 
-			indexStudentEdytowany = menu.nextInt();
+			indexStudentUsuwany = menu.nextInt();
 
-		} while (indexStudentEdytowany < 1 || indexStudentEdytowany > tablicaStudentow.length
-				|| tablicaStudentow[indexStudentEdytowany - 1] == null);
+		} while (indexStudentUsuwany < 1 || indexStudentUsuwany > tablicaStudentow.size());
+		tablicaStudentow.remove(indexStudentUsuwany - 1);
 
-		for (int i = indexStudentEdytowany; i < tablicaStudentow.length; i++) {
-			tablicaStudentow[i - 1] = tablicaStudentow[i];
-
-		}
-		tablicaStudentow[tablicaStudentow.length - 1] = null;
 	}
 
 	private void wypiszListeNaEkran() {
@@ -210,19 +198,19 @@ public class Menu {
 	}
 
 	private void wypiszMenu() {
-		System.out.println("1.Odczyt listy studentów");
-		System.out.println("2.Zapis listy studentów");
+		System.out.println("1.Odczyt listy studentÃ³w");
+		System.out.println("2.Zapis listy studentÃ³w");
 		System.out.println("3.Dodaj studenta");
-		System.out.println("4.Usuñ studenta");
+		System.out.println("4.UsuÅ„ studenta");
 		System.out.println("5.Wypisz liste na ekran");
 		System.out.println("6.Szukaj Studenta");
 		System.out.println("7.Edytuj");
-		System.out.println("9.Wyjœcie");
+		System.out.println("9.WyjÅ›cie");
 		System.out.println("podaj  liczbe:");
 	}
 
 	private void zapisListyStudentow() throws FileNotFoundException {
-		System.out.println("Podaj nazwê pliku");
+		System.out.println("Podaj nazwÄ™ pliku");
 		String nazwaPliku = menu.next();
 
 		StudentWriter zapis = new StudentWriter();

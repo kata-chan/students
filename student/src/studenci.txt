@@ -1,5 +1,5 @@
-Wersja=1:ImiÍ;Nazwisko;Data urodzin;Kierunek StudiÛw;Uczelnia
-Jan;Nowak;12-12-1999;Kulturoznawstwo;Wyøsza szko≥a latania na placku 
+Wersja=1:Imiƒô;Nazwisko;Data urodzin;Kierunek Studi√≥w;Uczelnia
+Jan;Nowak;12-12-1999;Kulturoznawstwo;Wy≈ºsza szko≈Ça latania na placku 
 Kazimierz;Kazik;01-01-2001;Alkoholizm;Pod parasolkami
-Miko≥aj;Staszkiewicz;28-11-1990;Mobbing;Wyøsza Szko≥a ZnÍcania w Zwiπzku
-Katarzyna;Lenart;28-08-1988;Odchudzanie;Wyøsza Szko≥a Obøarstwa i £akomstwa
+Miko≈Çaj;Staszkiewicz;28-11-1990;Mobbing;Wy≈ºsza Szko≈Ça Znƒôcania w ZwiƒÖzku
+Katarzyna;Lenart;28-08-1988;Odchudzanie;Wy≈ºsza Szko≈Ça Ob≈ºarstwa i ≈Çakomstwa

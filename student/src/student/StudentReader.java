@@ -2,26 +2,27 @@ package student;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StudentReader {
 	public static void main(String[] args) throws FileNotFoundException {
 		StudentReader odczyt = new StudentReader();
-		Student[] tablicaStudentow = odczyt.odczytajStudentow("src/studenci.txt");
+		ArrayList<Student> tablicaStudentow = odczyt.odczytajStudentow("src/studenci.txt");
 
 		StudentWriter zapis = new StudentWriter();
 		zapis.zapiszStudentow(tablicaStudentow, "src/studenci-zapis.txt");
 	}
 
-	public Student[] odczytajStudentow(String nazwaPliku) throws FileNotFoundException {
+	public ArrayList<Student> odczytajStudentow(String nazwaPliku) throws FileNotFoundException {
 
 		File file = new File(nazwaPliku);
-		Student[] studenci = new Student[20];
+		ArrayList<Student> studenci = new ArrayList<Student>();
 		if (file.exists()) {
 
 			Scanner scanner = new Scanner(file);
 			scanner.nextLine();
-			int liczbaStudentow = 0;
+
 			while (scanner.hasNextLine()) {
 				String linia = scanner.nextLine();
 				String[] tablica = linia.split(";");
@@ -31,10 +32,10 @@ public class StudentReader {
 				record.setDataUrodzin(tablica[2]);
 				record.setKierunekStudiow(tablica[3]);
 				record.uczelnia = tablica[4];
-				studenci[liczbaStudentow] = record;
-				// System.out.println(record);
-				liczbaStudentow++;
+				studenci.add(record);
+
 			}
+			scanner.close();
 		}
 		return studenci;
 
